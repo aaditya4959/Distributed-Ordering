@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+
+package order;
+
+// Service definition
+service OrderService {
+  // Unary RPC to create an order
+  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+}
+
+// Request message for creating an order
+message CreateOrderRequest {
+  string user_id = 1;
+  repeated OrderItem items = 2;
+  double total_amount = 3;
+}
+
+// Response message after order creation
+message CreateOrderResponse {
+  string order_id = 1;
+  string status = 2;
+  string message = 3;
+}
+
+// Represents an item in the order
+message OrderItem {
+  string product_id = 1;
+  int32 quantity = 2;
+  double price = 3;
+}
